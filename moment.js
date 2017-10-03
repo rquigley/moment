@@ -1825,9 +1825,10 @@ function loadLocale(name) {
     // TODO: Find a better way to register and load all the locales in Node
     if (!locales[name] && (typeof module !== 'undefined') &&
             module && module.exports) {
+        throw new Error('locales not supported');
         try {
             oldLocale = globalLocale._abbr;
-            require('./locale/' + name);
+            // require('./locale/' + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
